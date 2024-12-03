@@ -1,0 +1,21 @@
+class Solution {
+    public int arithmeticTriplets(int[] num, int diff) {
+        int i,j,k,n;
+        int counter=0;
+        n = num.length;
+        for(i=0;i<n-2;i++)
+        {
+            for(j=i+1;j<n-1;j++)
+            {
+                for(k=j+1;k<n;k++)
+                {
+                    if(num[j]-num[i] == diff && num[k] - num[j]== diff)
+                    {
+                        c++;
+                    }
+                }
+            }
+        }
+        return counter;
+    }
+}
