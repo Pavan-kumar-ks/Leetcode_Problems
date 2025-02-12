@@ -1,0 +1,25 @@
+class Solution {
+    void selectionSort(int[] a) {
+        // code here
+        int i,j,min;
+        int n;
+        n = a.length;
+        int temp;
+        for(i=0;i<n;i++)
+        {
+            min = i;
+            for(j=i+1;j<n;j++)
+            {
+                if(a[min]>a[j])
+                {
+                    min = j;
+                }
+            }
+            temp = a[min];
+            a[min] = a[i];
+            a[i] = temp;
+            
+        }
+        
+    }
+}
