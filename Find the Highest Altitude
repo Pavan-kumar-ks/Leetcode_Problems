@@ -1,0 +1,28 @@
+class Solution {
+    public int largestAltitude(int[] gain) {
+        // int n= gain.length;
+        // int a [] = new int[n+1];
+        // a[0] = 0;
+        // int sum=0;
+        // int max = a[0];
+        // for(int i=0;i<n;i++)
+        // {
+        //     sum = sum + gain[i];
+        //     a[i+1] = sum;
+        //     if(a[i]>max){
+                
+        //         max = a[i];
+            
+        //     }
+        // }
+        // return max;  this code solved 71/80 test cases . Below is the optimized code which has a little bit alteration of the brute force approach 
+        int max=0;
+        int cur=0;
+        for(int i=0;i<gain.length;i++)
+        {
+            cur = cur + gain[i];
+            max = Math.max(max,cur);
+        }
+        return max;
+    }
+}
