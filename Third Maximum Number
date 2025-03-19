@@ -1,0 +1,30 @@
+class Solution {
+    public int thirdMax(int[] nums) {
+        // Arrays.sort(nums);
+        // int max1=nums[0],max2=nums[1],max3=0;
+        // int n = nums.length;
+        // for(int i=0;i<n;i++)
+        // {
+        //     if(n<3){
+        //         max1 = Math.max(max1,max2);
+        //         return max1;
+        //     }
+        //     // 1 2 2 3
+            
+        // }
+        // return (n - 2);
+
+// The above code worked for 2 cases but didn't get the logic of repeated digits,so I have used set below :
+Set<Integer> s = new HashSet<Integer>();
+        for(int n : nums){
+            s.add(n);
+        }
+        if(s.size()<3){
+            return Collections.max(s);
+        }
+        s.remove(Collections.max(s));
+        s.remove(Collections.max(s));
+        return Collections.max(s);
+
+    }
+}
