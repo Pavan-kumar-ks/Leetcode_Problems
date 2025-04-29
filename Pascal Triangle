@@ -1,0 +1,21 @@
+class Solution {
+    public int fun_ncr(int n,int r){
+        int res =1;
+        for(int k=0;k<r;k++){
+            res = res*(n-k);
+            res = res/(k+1);
+        }
+        return res;
+    }
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ans = new ArrayList<>();
+        for(int i=0;i<numRows;i++){
+            List<Integer> temp = new ArrayList<>();
+            for(int j=0;j<=i;j++){
+                temp.add(fun_ncr(i,j));
+            }
+            ans.add(temp);
+        }
+        return ans;
+    }
+}
