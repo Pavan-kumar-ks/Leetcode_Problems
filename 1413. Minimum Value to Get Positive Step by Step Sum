@@ -1,0 +1,10 @@
+class Solution {
+    public int minStartValue(int[] nums) {
+        int sum=0;
+        int start=0;
+        for(int n : nums){
+            start = Math.min(start, sum += n);
+        }
+        return 1-start;
+    }
+}
