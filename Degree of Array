@@ -1,0 +1,25 @@
+class Solution {
+    public int findShortestSubArray(int[] nums) {
+      HashMap<Integer,Integer> map = new HashMap<>();
+      HashMap<Integer,Integer> first = new HashMap<>();
+      HashMap<Integer,Integer> last = new HashMap<>();
+        int degree =0;
+        for(int i=0;i<nums.length;i++){
+            int num = nums[i];
+            map.put(num,map.getOrDefault(num,0)+1);//jere we calculate the frequency of each element . We check for if it is present in the map or else we make it default as zero
+            if(!first.containsKey(num)){
+                first.put(num,i);//here we check fot the first occurence , if it is first time the key is apperaring then we add to first map or else if that key is already present in the map we don't execute this condition it becomes false
+            }
+            last.put(num,i);//when it becomes false we add to last map
+            degree = Math.max(degree,map.get(num));//here we calculate the highest degree of the key which has the maximum frequency 
+        }
+        int len = nums.length;
+        for(int keys : map.keySet()){//here keyset is used to fetch the unique keys in map
+            if(map.get(keys) == degree){//here if the fetched key value in loop is equal to degree then for that key we should calculate the maximum subarray
+                    int minlen = last.get(keys) - first.get(keys)+1;//here we calculate the difference btw first and last index of hashmap(which indirectly relates to array) and add 1 for proper calculation
+                    len = Math.min(minlen,len);//we calculate the minimum among the calculated array length and calcualted difference length of subarray
+            }
+        }
+        return len;
+    }
+}
