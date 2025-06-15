@@ -1,0 +1,32 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);//we sort the array so that it's easy to skip duplicates in the array
+        for(int i=0;i<nums.length-2;i++){//run the loop till nums.length-2 because we need to have 3 indexs to satisfy our prblm at last two indexs are unnecessary if we don't get the triplet
+            if(i>0 && nums[i] == nums[i-1] ){
+                continue;//checks for the duplicate element at every for loop iteration 
+            }
+            int left = i+1;//left variable starts from i+1
+            int right = nums.length -1;//right variable starts from last
+            while(left<right){//run the loop until it's left<right fails and remember this is an each individual iteration of for loop (this while loop is executed until nums.length-2 times)
+                int sum = nums[i]+nums[left]+nums[right];//calculate the sum
+                if(sum == 0){
+                    res.add(Arrays.asList(nums[i],nums[left],nums[right]));//if it is equal to 0 then add to list asList
+                
+                while(left<right && nums[left] == nums[left+1])left++;//to bypass the duplicates 
+                while(left<right && nums[right] == nums[right-1])right--;//to bypass the duplicates
+
+                left++;//left is incremented to find next triplet
+                right--;//right is decremented to find next triplet
+                }
+                else if(sum<0){
+                    left++;//if sum calculation is less than 0 then increment left variable
+                } 
+                else{
+                    right--;//if sum is variable is bigger then decrement right variable
+                }
+            }
+        }
+        return res;
+    }
+}
