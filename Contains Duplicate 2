@@ -1,0 +1,19 @@
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+       HashMap<Integer,Integer> map = new HashMap<>();
+       for(int i=0;i<nums.length;i++){
+        //below condition checks whether the given value is already present in map
+        if(map.containsKey(nums[i])){
+            //if it is present then fetch the previous index value of that element
+            int prev = map.get(nums[i]);
+            if(i-prev<=k){
+                //then check for current index - previous index , it should be less than given k value . If it satisfies the condition then return true.
+                return true;
+            }
+        }
+                map.put(nums[i],i);
+
+       }
+       return false;
+    }
+}
