@@ -1,0 +1,27 @@
+class Solution {
+    public void swap(char [] c,int f,int l){
+        while(f<l){
+            char temp = c[f];
+            c[f] = c[l];
+            c[l] = temp;
+            f++;
+            l--;
+        }
+    }
+    public String reversePrefix(String word, char ch) {
+        char []c = word.toCharArray();
+        int last=-1;
+        for(int i=0;i<c.length;i++){
+            if(c[i] == ch){
+                last = i;
+                break;
+            }
+        }
+        swap(c,0,last);
+        if(last == -1)
+        {
+            return word;
+        }
+        return new String(c);
+    }
+}
