@@ -1,0 +1,30 @@
+class Solution {
+    public int[] leftmax(int []ht , int n){
+        int []rl = new int[n];
+        rl[0] = ht[0];
+        for(int i=1;i<n;i++){
+            rl[i] = Math.max(rl[i-1],ht[i]);
+        }
+        return rl;
+    }
+    public int[] rightmax(int []ht , int n){
+        int []rr = new int[n];
+        rr[n-1] = ht[n-1];
+        for(int i=n-2;i>=0;i--){
+            rr[i] = Math.max(rr[i+1],ht[i]);
+        }
+        return rr;
+    }
+    public int trap(int[] ht) {
+        int h=0;
+        int max=0;
+        int n = ht.length;
+        int []left= leftmax(ht,n);
+        int []right = rightmax(ht,n);
+        for(int i=0;i<ht.length;i++){
+            h = Math.min(left[i],right[i])-ht[i];
+            max = max+h;
+        }
+        return max;
+    }
+}
