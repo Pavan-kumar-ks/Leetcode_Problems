@@ -1,0 +1,19 @@
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int sum=0;
+        int left,right;
+        left =0;
+        int minl = Integer.MAX_VALUE;//Intially the length will be some max value
+        right =0;
+        while(right<nums.length){//we incement the right pointer 
+            sum += nums[right];//add the right pointer value until the sum is greater than target
+            while(sum>=target){
+                minl = Math.min(minl,right-left+1);//we check for taken window size and pointers difference window size
+                sum -= nums[left];//decrement the value of sum to move the window
+                left++;
+            }
+            right++;
+        }
+        return (minl == Integer.MAX_VALUE)?0:minl;//if considered length is same as the taken value after the execution then return 0 or else return minlength value
+    }
+}
