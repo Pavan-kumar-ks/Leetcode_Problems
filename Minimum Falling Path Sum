@@ -1,0 +1,31 @@
+class Solution {
+    int n;
+    public int minFallingPathSum(int[][] matrix) {
+        int minsum = Integer.MAX_VALUE;
+        n = matrix.length;
+        Integer [][]dp = new Integer[n][n];
+        for(int col=0;col<n;col++){
+            minsum = Math.min(minsum,solve(matrix,dp,0,col));
+        }
+        return minsum;
+    }
+    public int solve(int[][] m,Integer[][] dp,int row,int col){
+        if(row == n-1){
+            return m[row][col];
+        }
+        if(dp[row][col] != null){
+            return dp[row][col];
+        }
+        int down = solve(m,dp,row+1,col);
+        int left = Integer.MAX_VALUE;
+        if(col-1>=0){
+        left = solve(m,dp,row+1,col-1);
+        }
+        int right = Integer.MAX_VALUE;
+        if(col+1<n){
+        right = solve(m,dp,row+1,col+1);
+        }
+        dp[row][col]= m[row][col] +Math.min(down,Math.min(left,right));
+        return dp[row][col];
+    }
+}
