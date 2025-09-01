@@ -1,0 +1,23 @@
+class Solution {
+    public String longestPalindrome(String s) {
+        if(s.length()<=1){
+            return s;
+        }
+        String res = "";
+        for(int i=0;i<s.length();i++){
+            //odd length
+            res = palind(i,i,res,s);
+            //even length
+            res = palind(i,i+1,res,s);
+        }
+        return res;
+    }
+    public static String palind(int low,int high,String res,String s){
+        while(low>= 0 && high<s.length() && s.charAt(low) == s.charAt(high)){
+            low--;
+            high++;
+        }
+        String pal = s.substring(low+1,high);
+        return (pal.length()>res.length())?pal:res;
+    }
+}
