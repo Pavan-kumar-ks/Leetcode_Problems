@@ -1,0 +1,41 @@
+class Solution {
+    public String decodeString(String s) {
+        Stack<Integer> numst = new Stack<>();
+        Stack<String> strst = new Stack<>();
+        int k = 0;
+
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                k = (k * 10) + (c - '0'); 
+            } 
+            else if (c == '[') {
+                numst.push(k);
+                k = 0;
+                strst.push("["); 
+            } 
+            else if (c == ']') {
+                StringBuilder temp = new StringBuilder();
+                while (!strst.peek().equals("[")) {
+                    temp.insert(0, strst.pop());
+                }
+                strst.pop();
+
+                int cnt = numst.pop();
+                StringBuilder repeated = new StringBuilder();
+                for (int i = 0; i < cnt; i++) {
+                    repeated.append(temp);
+                }
+
+                strst.push(repeated.toString());
+            } 
+            else {
+                strst.push(String.valueOf(c));
+            }
+        }
+        StringBuilder res = new StringBuilder();
+        while (!strst.isEmpty()) {
+            res.insert(0, strst.pop());
+        }
+        return res.toString();
+    }
+}
