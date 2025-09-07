@@ -1,0 +1,26 @@
+class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        List<String> s = new ArrayList<>();
+        int st=0;
+        int e=0;
+        for(int i=0;i<nums.length;i++){
+            if(i+1<nums.length && nums[i]+1 == nums[i+1]){
+                e++;
+                continue;
+            }
+            else{
+                if(st == e){
+                    s.add(""+nums[st]);
+                    st++;
+                    e++;
+                }
+                else{
+                    s.add(""+nums[st]+"->"+nums[e]);
+                    e++;
+                    st=e;
+                }
+            }
+        }
+        return s;
+    }
+}
