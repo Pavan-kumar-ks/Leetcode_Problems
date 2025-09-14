@@ -1,0 +1,21 @@
+public static String gameOfThrones(String s) {
+    // Write your code here
+    int []freq = new int[26];
+    if(s.length()==1){
+        return "YES";
+    }
+    for(char c:s.toCharArray()){
+        freq[c-'a']++;
+    }
+    int odd=0;
+    for(int c : freq){
+        if(c%2 != 0){
+            odd++;
+        }
+        if(odd>1){
+            return "NO";
+        }
+    }
+    return "YES";
+
+    }
