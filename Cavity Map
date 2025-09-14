@@ -1,0 +1,22 @@
+public static List<String> cavityMap(List<String> grid) {
+    // Write your code here
+    int n = grid.size();
+    char [][] g = new char[n][n];
+    for(int i=0;i<n;i++){
+            g[i] = grid.get(i).toCharArray();
+    }
+    
+    for(int i=1;i<grid.size()-1;i++){
+        for(int j=1;j<grid.size()-1;j++){
+            char d = g[i][j];
+            if(d>g[i-1][j] && d>g[i][j-1] && d>g[i+1][j] && d>g[i][j+1]){
+                g[i][j] = 'X';
+            }
+        }
+    }
+    List<String> res = new ArrayList<>();
+    for(int i=0;i<n;i++){
+        res.add(new String (g[i]));
+    }
+    return res;
+    }
