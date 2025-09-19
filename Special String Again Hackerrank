@@ -1,0 +1,20 @@
+public class Solution {
+
+    // Complete the substrCount function below.
+    static long substrCount(int n, String s) {
+        long c =n;
+        for(int i=0;i<n;i++){
+            int rep=0;
+            while(i+1<n && s.charAt(i) == s.charAt(i+1)){
+                rep++;
+                i++;
+            }
+            c += (long)(rep*(rep+1))/2;
+            int pointer =1;
+            while(i-pointer>=0 && i+pointer<n && s.charAt(i-pointer)==s.charAt(i-1) && s.charAt(i+pointer) == s.charAt(i-1)){
+                c++;
+                pointer++;
+            }
+        }
+        return c;
+    }
