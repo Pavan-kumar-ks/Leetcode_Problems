@@ -1,0 +1,46 @@
+public static String highestValuePalindrome(String s, int n, int k) {
+    // Write your code here
+    char ch[] = s.toCharArray();
+    boolean b[] = new boolean[n];
+    int used =0;
+    int l =0;
+    int h = n-1;
+    
+    while(l<h){
+        if(ch[l] != ch[h]){
+            char big = (char)Math.max(ch[l],ch[h]);
+            ch[l] = ch[h] = big;
+            b[l] = true;
+            used++;
+        }
+        l++;
+        h--;
+    }
+    if(used>k){
+        return "-1";
+    }
+    int rem = k-used;
+    l=0;
+    h=n-1;
+    while(l<=h){
+        if(l==h){
+            if(rem>0 && ch[l] != '9'){
+                ch[l] = '9';
+                rem--;
+            }
+        }else{
+        if(ch[l] != '9'){
+            if(b[l] && rem>0){
+                ch[l] = ch[h] = '9';
+                rem--;
+            }else if(!b[l] && rem>1){
+                ch[l] =ch[h] ='9';
+                rem=rem-2;
+            }
+        }
+    }
+    l++;
+    h--;
+    }
+    return new String(ch);
+    }
