@@ -1,0 +1,18 @@
+ public static long maximumSum(List<Long> a, long m) {
+    // Write your code here
+    long max =0;
+    long p =0;
+    TreeSet<Long> ts = new TreeSet<>();
+    for(long num : a){
+        p = (p+num%m)%m;
+        max = Math.max(max,p);
+        
+        Long high = ts.higher(p);
+        if(high != null){
+            max = Math.max(max , (p-high+m)%m);
+        }        
+        ts.add(p);
+    }
+    return max;
+
+}
