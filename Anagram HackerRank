@@ -1,0 +1,36 @@
+public static int anagram(String s) {
+    if(s.length()%2 != 0){
+        return -1;
+    }
+    int mid = s.length()/2;
+// When u have String.substring() method why do u do the binary search mid element logic not needed bro just split the given string using substring method ok na
+//see in substring method u can pass two parameters like beginning index and beginning index and last index 
+// so pass 0,mid for first string and only mid for second string
+// 0,mid makes a substring from 0 to mid index and second string starts it's operation of making substring from mid index and goes till last index
+// store the substrings in String variables dumbass
+
+    String s1 = s.substring(0,mid);
+    String s2 = s.substring(mid);
+    int freq[] = new int[26];
+// create a frequency array for storing the characters frequency
+//in first for loop iterate for first substring and update the frequency array by using this logic c1 - 'a' which converts your character to integer value 
+//like for example if character is 'b' and we will update like 'b'-'a' which subracts the ascii values and we get it as 1 and we update at 1 index of frequency array and then increment the frequency 
+    for(char c1 : s1.toCharArray()){
+        freq[c1 - 'a']++;
+    }
+// now in string 2 we need to check the count of changes right so we decrement the value like if aaabbb is string and we split as aaa as s1 and bbb as s2 then s1 count will be 3 and s2 will be -3 because in counting we consider only +ve values pa
+// if there are any same repeating characters found then their frequency is decreased 
+    for(char c2 : s2.toCharArray()){
+        freq[c2 - 'a']--;
+    }
+    int c=0;
+//seee we consider only +ve value frequency and add it to the count 
+    for(int val : freq){
+        if(val>0){
+            c += val;
+        }
+    }
+    return c;
+    }
+
+}
