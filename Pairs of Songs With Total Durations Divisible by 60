@@ -1,0 +1,13 @@
+class Solution {
+    public int numPairsDivisibleBy60(int[] time) {
+        int []m = new int[60];
+        int c=0;
+        for(int i=0;i<time.length;i++){
+            int rem = time[i]%60;
+            int complement = (60-rem)%60;
+            c += m[complement];
+            m[rem]++;
+        }
+        return c;
+    }
+}
